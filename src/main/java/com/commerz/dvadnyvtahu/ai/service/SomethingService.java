@@ -3,8 +3,11 @@ package com.commerz.dvadnyvtahu.ai.service;
 import com.commerz.dvadnyvtahu.ai.client.midjourney.ImageRequest;
 import com.commerz.dvadnyvtahu.ai.client.midjourney.Message;
 import com.commerz.dvadnyvtahu.ai.client.midjourney.MidJourneyClient;
+import com.commerz.dvadnyvtahu.ai.client.midjourney.MidResponse;
 import com.commerz.dvadnyvtahu.ai.domain.Test;
 import com.commerz.dvadnyvtahu.ai.repository.TestRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
@@ -13,8 +16,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 @Service
 public class SomethingService {
+    private Logger logger = LoggerFactory.getLogger(SomethingService.class);
 
     @Autowired
     private TestRepository testRep;
@@ -50,7 +56,16 @@ public class SomethingService {
     public Message testMj() {
         ImageRequest ir = new ImageRequest();
         ir.setMsg("https://uloz.to/quickDownload/KkpbZu96Flmx view the man in the picture as a surfer");
-        Message m =  mj.executePrompt(getToken(), ir);
+        Message m = mj.executePrompt(getToken(), ir);
+        MidResponse midResponse = null;
+        while (midResponse==null || midResponse.getImageUrls() == null) {
+            try {
+                SECONDS.sleep(10);
+            } catch (InterruptedException e) {
+            }
+            midResponse = mj.retrieveResponse(getToken(), m.getMessageId());
+        }
+
         return m;
     }
 
