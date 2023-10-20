@@ -11,7 +11,7 @@ import java.util.List;
 public class ChatRequestDto {
 
     private String model;
-    private List<Message> messages;
+    private List<ChatMessage> messages;
     private int n = 1;
     private double temperature = 0.9;
 
@@ -19,7 +19,7 @@ public class ChatRequestDto {
         this.model = model;
 
         this.messages = new ArrayList<>();
-        this.messages.add(new Message("user", prompt));
+        this.messages.add(new ChatMessage("user", prompt));
     }
 
 }

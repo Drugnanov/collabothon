@@ -14,7 +14,7 @@ public class ChatResponseDto {
     @Getter
     public static class Choice {
         private int index;
-        private Message message;
+        private ChatMessage message;
     }
 }
 
