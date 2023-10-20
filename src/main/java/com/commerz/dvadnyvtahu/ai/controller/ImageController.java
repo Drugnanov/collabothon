@@ -2,10 +2,8 @@ package com.commerz.dvadnyvtahu.ai.controller;
 
 import com.commerz.dvadnyvtahu.ai.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -18,11 +16,12 @@ public class ImageController {
     private ImageService imageService;
 
 
-    @PostMapping("/upload")
-    public String uploadImage(@RequestParam("imageFile") File file) {
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadImage(@RequestPart(value = "file") MultipartFile file, @RequestParam("fileName") String fileName) {
 
-        imageService.uploadImage(file);
+        imageService.uploadImage(file, fileName);
 
-        return "Image uploaded";
+        // TODO make the uploaded file public and return the link to download it
+        return "Image uploaded - there should be link returned here ideally";
     }
 }
