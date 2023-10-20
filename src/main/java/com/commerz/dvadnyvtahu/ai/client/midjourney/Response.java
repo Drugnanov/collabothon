@@ -6,5 +6,6 @@ import java.util.List;
 
 @Data
 public class Response {
+    String imageUrl;
     List<String> imageUrls;
 }
