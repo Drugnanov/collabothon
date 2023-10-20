@@ -58,7 +58,7 @@ public class SomethingService {
         ir.setMsg("https://uloz.to/quickDownload/KkpbZu96Flmx view the man in the picture as a surfer");
         Message m = mj.executePrompt(getToken(), ir);
         MidResponse midResponse = null;
-        while (midResponse==null || midResponse.getImageUrls() == null) {
+        while (midResponse==null || midResponse.getProgress() == null || midResponse.getProgress()<100) {
             try {
                 SECONDS.sleep(10);
             } catch (InterruptedException e) {
