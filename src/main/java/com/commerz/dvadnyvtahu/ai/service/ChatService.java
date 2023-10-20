@@ -23,13 +23,16 @@ public class ChatService {
     @Value("${openai.api.key}")
     private String token;
 
+    @Value("${prompt.chatgtp.template}")
+    private String promptTemplate;
+
     private String getToken() {
         return "Bearer " + token;
     }
 
     public ChatMessage prompt(String prompt) {
 
-        ChatRequestDto request = new ChatRequestDto(model, prompt);
+        ChatRequestDto request = new ChatRequestDto(model, String.format(promptTemplate, prompt));
 
         ChatResponseDto response = chatGpt.executePrompt(getToken(), request);
 
