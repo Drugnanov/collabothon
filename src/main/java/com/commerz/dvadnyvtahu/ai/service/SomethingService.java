@@ -54,6 +54,16 @@ public class SomethingService {
         ImageRequest ir = new ImageRequest();
         ir.setMsg("https://uloz.to/quickDownload/KkpbZu96Flmx view the man in the picture as a surfer");
         Message m = mj.executePrompt(getToken(), ir);
+        return executePrompt(m);
+    }
+
+
+    public Response callMidJourney(ImageRequest ir) {
+        Message m = mj.executePrompt(getToken(), ir);
+        return executePrompt(m);
+    }
+
+    private Response executePrompt(Message m) {
         MidResponse midResponse = null;
         while (midResponse==null || midResponse.getProgress() == null || midResponse.getProgress()<100) {
             try {
@@ -65,7 +75,6 @@ public class SomethingService {
 
         return midResponse.getResponse();
     }
-
 
     //Does not work
 //    public ImageUpload uploadFile() {
