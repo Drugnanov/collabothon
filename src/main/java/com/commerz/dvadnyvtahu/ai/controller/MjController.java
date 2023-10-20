@@ -1,11 +1,10 @@
 package com.commerz.dvadnyvtahu.ai.controller;
 
-import com.commerz.dvadnyvtahu.ai.client.midjourney.Message;
-import com.commerz.dvadnyvtahu.ai.domain.Test;
+import com.commerz.dvadnyvtahu.ai.client.midjourney.Response;
 import com.commerz.dvadnyvtahu.ai.service.SomethingService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/mj")
@@ -17,7 +16,7 @@ public class MjController {
     }
 
     @GetMapping("/imagine")
-    public Message initImagine() {
+    public Response initImagine() {
         return somethingService.testMj();
     }
 }

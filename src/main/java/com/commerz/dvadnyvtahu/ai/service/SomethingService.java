@@ -1,9 +1,6 @@
 package com.commerz.dvadnyvtahu.ai.service;
 
-import com.commerz.dvadnyvtahu.ai.client.midjourney.ImageRequest;
-import com.commerz.dvadnyvtahu.ai.client.midjourney.Message;
-import com.commerz.dvadnyvtahu.ai.client.midjourney.MidJourneyClient;
-import com.commerz.dvadnyvtahu.ai.client.midjourney.MidResponse;
+import com.commerz.dvadnyvtahu.ai.client.midjourney.*;
 import com.commerz.dvadnyvtahu.ai.domain.Test;
 import com.commerz.dvadnyvtahu.ai.repository.TestRepository;
 import org.slf4j.Logger;
@@ -53,7 +50,7 @@ public class SomethingService {
     }
 
 
-    public Message testMj() {
+    public Response testMj() {
         ImageRequest ir = new ImageRequest();
         ir.setMsg("https://uloz.to/quickDownload/KkpbZu96Flmx view the man in the picture as a surfer");
         Message m = mj.executePrompt(getToken(), ir);
@@ -66,7 +63,7 @@ public class SomethingService {
             midResponse = mj.retrieveResponse(getToken(), m.getMessageId());
         }
 
-        return m;
+        return midResponse.getResponse();
     }
 
 
