@@ -21,7 +21,7 @@ public class ImageController {
 
         imageService.uploadImage(file, fileName);
 
-        // TODO make the uploaded file public and return the link to download it
+        // TODO return the link to download the image
         return "Image uploaded - there should be link returned here ideally";
     }
 }

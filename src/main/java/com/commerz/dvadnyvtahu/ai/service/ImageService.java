@@ -31,6 +31,12 @@ public class ImageService {
 
         googleCloudServicesClient.uploadImage(getToken(), fileName, file);
 
+        // set all the images in the bucket to be public
+        logger.info("Setting public access");
+        googleCloudServicesClient.setPublicAccess(getToken(), "{\"bindings\":[{\"role\":\"roles/storage.objectViewer\",\"members\":[\"allUsers\"]}]}");
+
+        logger.info("https://storage.googleapis.com/collabothon-dvadnyvtahu/" + fileName);
+
         logger.info("Uploading image completed");
 
     }
