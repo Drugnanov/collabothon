@@ -20,26 +20,8 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
-    @Value("${openai.model}")
-    private String model;
-
     @GetMapping
     public ChatMessage chat(@RequestParam String prompt) {
         return chatService.prompt(prompt);
     }
-
-    /*
-           // create a request
-        ChatRequestDto request = new ChatRequestDto(model, prompt);
-
-        // call the API
-        ChatResponseDto response = restTemplate.postForObject(apiUrl, request, ChatResponseDto.class);
-
-        if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
-            return "No response";
-        }
-
-        // return the first response
-        return response.getChoices().get(0).getMessage().getContent();
-     */
 }

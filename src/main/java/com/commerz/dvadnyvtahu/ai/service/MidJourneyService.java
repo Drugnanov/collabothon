@@ -16,17 +16,11 @@ import java.util.List;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Service
-public class SomethingService {
-    private Logger logger = LoggerFactory.getLogger(SomethingService.class);
-
-    @Autowired
-    private TestRepository testRep;
+public class MidJourneyService {
+    private Logger logger = LoggerFactory.getLogger(MidJourneyService.class);
 
     @Autowired
     private MidJourneyClient mj;
-
-//    @Autowired
-//    private FileIo fi;
 
     @Autowired
     ResourceLoader resourceLoader;
@@ -37,18 +31,6 @@ public class SomethingService {
     private String getToken() {
         return "Bearer " + token;
     }
-
-    static List<Test> tests = new ArrayList<Test>();
-    static long id = 0;
-
-    public List<Test> findAll() {
-        return testRep.findAll();
-    }
-
-    public Test save(Test test) {
-        return testRep.save(test);
-    }
-
 
     public Response testMj(String what) {
         ImageRequest ir = new ImageRequest();
@@ -75,32 +57,4 @@ public class SomethingService {
 
         return midResponse.getResponse();
     }
-
-    //Does not work
-//    public ImageUpload uploadFile() {
-//        Resource resource = resourceLoader.getResource("classpath:images/drug.png");
-//        try {
-//            StringBuilder binary = new StringBuilder();
-//            DataInputStream input = new DataInputStream(resource.getInputStream());
-//            try {
-//                while (true) {
-//                    binary.append(Integer.toBinaryString(input.readByte()));
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            byte[] fileContent = resource.getContentAsByteArray();
-//            String encodedString = Base64.getEncoder().encodeToString(fileContent);
-//
-//            ImageUpload iu = new ImageUpload();
-//            iu.setFile(encodedString);
-//            iu.setFile(binary.toString());
-//            ImageUploadResponse iur = fi.uploadImage(iu);
-//
-//            return mj.getAddressByEmployeeId("Bearer " + token, ir);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 }
