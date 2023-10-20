@@ -50,9 +50,9 @@ public class SomethingService {
     }
 
 
-    public Response testMj() {
+    public Response testMj(String what) {
         ImageRequest ir = new ImageRequest();
-        ir.setMsg("https://uloz.to/quickDownload/KkpbZu96Flmx view the man in the picture as a surfer");
+        ir.setMsg("https://uloz.to/quickDownload/KkpbZu96Flmx "+what);
         Message m = mj.executePrompt(getToken(), ir);
         return executePrompt(m);
     }
