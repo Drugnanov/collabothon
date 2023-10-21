@@ -16,7 +16,7 @@ public class ImageController {
     private ImageService imageService;
 
 
-    @PostMapping(value = "/upload", consumes = MediaType.IMAGE_JPEG_VALUE)
+    @PostMapping(value = "/upload")
     public String uploadImage(@RequestPart(value = "file") MultipartFile file) {
 
         String resultLink = imageService.uploadImage(file);

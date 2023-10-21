@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 
 @Service
 public class ImageService {
@@ -27,7 +29,11 @@ public class ImageService {
 
         logger.info("Uploading image");
 
-        googleCloudServicesClient.uploadImage(getToken(), file.getName(), file);
+        try {
+            googleCloudServicesClient.uploadImage(getToken(), file.getName(), file.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // set all the images in the bucket to be public
         //logger.info("Setting public access");
