@@ -1,6 +1,6 @@
-package com.commerz.dvadnyvtahu.ai.client.gcs;
+package com.commerz.dvadnyvtahu.ai.configuration;
 
-import com.commerz.dvadnyvtahu.ai.client.midjourney.FeignConfig;
+import com.commerz.dvadnyvtahu.ai.configuration.FeignConfig;
 import feign.form.spring.SpringFormEncoder;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.ObjectFactory;

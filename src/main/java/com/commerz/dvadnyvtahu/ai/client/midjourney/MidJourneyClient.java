@@ -1,5 +1,6 @@
 package com.commerz.dvadnyvtahu.ai.client.midjourney;
 
+import com.commerz.dvadnyvtahu.ai.configuration.FeignConfig;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.commerz.dvadnyvtahu.ai.client.midjourney;
+package com.commerz.dvadnyvtahu.ai.configuration;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

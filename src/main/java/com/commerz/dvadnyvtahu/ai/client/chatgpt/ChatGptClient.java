@@ -2,9 +2,7 @@ package com.commerz.dvadnyvtahu.ai.client.chatgpt;
 
 import com.commerz.dvadnyvtahu.ai.client.dto.ChatRequestDto;
 import com.commerz.dvadnyvtahu.ai.client.dto.ChatResponseDto;
-import com.commerz.dvadnyvtahu.ai.client.midjourney.FeignConfig;
-import com.commerz.dvadnyvtahu.ai.client.midjourney.ImageRequest;
-import com.commerz.dvadnyvtahu.ai.client.midjourney.Message;
+import com.commerz.dvadnyvtahu.ai.configuration.FeignConfig;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
