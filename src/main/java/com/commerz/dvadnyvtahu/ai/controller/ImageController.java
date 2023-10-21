@@ -19,9 +19,8 @@ public class ImageController {
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadImage(@RequestPart(value = "file") MultipartFile file, @RequestParam("fileName") String fileName) {
 
-        imageService.uploadImage(file, fileName);
+        String resultLink = imageService.uploadImage(file, fileName);
 
-        // TODO return the link to download the image
-        return "Image uploaded - there should be link returned here ideally";
+        return resultLink;
     }
 }
