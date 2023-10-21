@@ -21,12 +21,12 @@ public class Version1Controller {
     @Autowired
     private MidJourneyService midJourneyService;
 
-    @PostMapping(value = "/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/photo", consumes = MediaType.IMAGE_JPEG_VALUE)
     public String createPhoto(@RequestPart(value = "file") MultipartFile file,
                               @RequestParam("destination") String destination, @RequestParam("hobby") String hobby) {
 
         String fileName = "last.jpg";
-        String photoLink = imageService.uploadImage(file, fileName);
+        String photoLink = imageService.uploadImage(file);
 
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setMsg(photoLink + " on vacation at " + destination + " doing " + hobby);

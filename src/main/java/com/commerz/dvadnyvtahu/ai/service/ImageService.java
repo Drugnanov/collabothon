@@ -23,11 +23,11 @@ public class ImageService {
         return "Bearer " + token;
     }
 
-    public String uploadImage(MultipartFile file, String fileName) {
+    public String uploadImage(MultipartFile file) {
 
         logger.info("Uploading image");
 
-        googleCloudServicesClient.uploadImage(getToken(), fileName, file);
+        googleCloudServicesClient.uploadImage(getToken(), file.getName(), file);
 
         // set all the images in the bucket to be public
         //logger.info("Setting public access");
@@ -35,6 +35,6 @@ public class ImageService {
 
         logger.info("Uploading image completed");
 
-        return "https://storage.googleapis.com/collabothon-dvadnyvtahu/" + fileName;
+        return "https://storage.googleapis.com/collabothon-dvadnyvtahu/" + file.getName();
     }
 }
