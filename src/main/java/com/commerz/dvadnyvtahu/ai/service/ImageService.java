@@ -25,12 +25,12 @@ public class ImageService {
         return "Bearer " + token;
     }
 
-    public String uploadImage(MultipartFile file) {
+    public String uploadImage(MultipartFile file, String fileName) {
 
         logger.info("Uploading image");
 
         try {
-            googleCloudServicesClient.uploadImage(getToken(), file.getName(), file.getBytes());
+            googleCloudServicesClient.uploadImage(getToken(), fileName, file.getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -41,6 +41,6 @@ public class ImageService {
 
         logger.info("Uploading image completed");
 
-        return "https://storage.googleapis.com/collabothon-dvadnyvtahu/" + file.getName();
+        return "https://storage.googleapis.com/collabothon-dvadnyvtahu/" + fileName;
     }
 }

@@ -16,10 +16,10 @@ public class ImageController {
     private ImageService imageService;
 
 
-    @PostMapping(value = "/upload")
-    public String uploadImage(@RequestPart(value = "file") MultipartFile file) {
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadImage(@RequestPart(value = "file") MultipartFile file, String fileName) {
 
-        String resultLink = imageService.uploadImage(file);
+        String resultLink = imageService.uploadImage(file, fileName);
 
         return resultLink;
     }
