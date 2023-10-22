@@ -16,6 +16,6 @@ public class PromptOrchestrationController {
     public void withPrompt(@RequestParam String photoUrl,
                            @RequestParam String gender,
                            @RequestBody ImageRequest ir) {
-        promptOrchestrationService.generateImage(photoUrl, gender, ir.getMsg());
+        promptOrchestrationService.generateImage(photoUrl, gender, "France", ir.getMsg());
     }
 }

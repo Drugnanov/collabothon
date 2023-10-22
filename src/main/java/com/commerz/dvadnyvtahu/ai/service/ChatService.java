@@ -4,6 +4,7 @@ import com.commerz.dvadnyvtahu.ai.client.chatgpt.ChatGptClient;
 import com.commerz.dvadnyvtahu.ai.client.dto.ChatMessage;
 import com.commerz.dvadnyvtahu.ai.client.dto.ChatRequestDto;
 import com.commerz.dvadnyvtahu.ai.client.dto.ChatResponseDto;
+import org.apache.commons.text.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,13 @@ public class ChatService {
 
         ChatRequestDto request = new ChatRequestDto(model, String.format(promptTemplate, prompt));
 
+        logger.info("ChatGPT executing prompt: {} ", WordUtils.wrap(request.getMessages().get(0).getContent(), 150));
         ChatResponseDto response = chatGpt.executePrompt(getToken(), request);
 
         if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
             return null;
         }
+        logger.info("ChatGPT response: {} ", WordUtils.wrap(response.getChoices().get(0).getMessage().getContent(), 150));
 
         // return the first response
         return response.getChoices().get(0).getMessage();

@@ -52,7 +52,9 @@ public class MidJourneyService {
                 SECONDS.sleep(10);
             } catch (InterruptedException e) {
             }
+            logger.info("Asking MidJourney for the status.");
             midResponse = mj.retrieveResponse(getToken(), m.getMessageId());
+            logger.info("Progress status: {} ", midResponse.getProgress());
         }
 
         return midResponse.getResponse();

@@ -16,7 +16,9 @@ public class UserDataHashMapRepository {
         new AbstractMap.SimpleEntry<>("jean1234", new UserData("male",
             List.of("wine", "Bordeau", "basketball"))),
             new AbstractMap.SimpleEntry<>("scarlet666", new UserData("female",
-            List.of("relaxing on a beach")))
+            List.of("relaxing on a beach"))),
+            new AbstractMap.SimpleEntry<>("michal", new UserData("male",
+                    List.of("relaxing on a beach")))
     );
 
     public UserData getUserDataFromStaticHashMap(String id) {

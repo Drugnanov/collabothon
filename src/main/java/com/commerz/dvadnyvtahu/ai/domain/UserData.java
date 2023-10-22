@@ -12,4 +12,8 @@ public class UserData {
     private String gender;
     private List<String> favourites;
 
+    public String getActivity() {
+        return favourites.get(0);
+    }
+
 }

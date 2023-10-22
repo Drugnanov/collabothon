@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 
 
 @RestController
@@ -23,7 +24,7 @@ public class Version1Controller {
 
     @PostMapping(value = "/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String createPhoto(@RequestPart(value = "file") MultipartFile file,
-                              @RequestParam("destination") String destination, @RequestParam("hobby") String hobby) {
+                              @RequestParam("destination") String destination, @RequestParam("hobby") String hobby) throws IOException {
 
         String fileName = "last.jpg";
         String photoLink = imageService.uploadImage(file, fileName);

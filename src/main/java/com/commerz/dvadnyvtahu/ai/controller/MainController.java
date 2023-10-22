@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/collabothon")
 public class MainController {
@@ -29,7 +31,7 @@ public class MainController {
     @PostMapping(value = "/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void processByPhotoUploadAndId(
             @RequestPart(value = "file") MultipartFile file,
-            @RequestParam String id) {
+            @RequestParam String id) throws IOException {
         String fileName = "last.jpg";
         String photoUrl = imageService.uploadImage(file, fileName);
         inputOrchestrationService.processInput(photoUrl, id);

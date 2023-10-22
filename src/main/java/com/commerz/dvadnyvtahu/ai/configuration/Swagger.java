@@ -12,9 +12,8 @@ public class Swagger {
     @Bean
     public OpenAPI customizedOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Demo API")
-                .description("Some description")
-                .license(new License().name("Copyright me")));
+                .info(new Info().title("Collabothon API")
+                .description("AI image generation of Dva dny v tahu team"));
     }
 
 }

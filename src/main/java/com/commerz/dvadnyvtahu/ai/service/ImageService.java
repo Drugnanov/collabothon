@@ -25,21 +25,11 @@ public class ImageService {
         return "Bearer " + token;
     }
 
-    public String uploadImage(MultipartFile file, String fileName) {
+    public String uploadImage(MultipartFile file, String fileName) throws IOException {
 
-        logger.info("Uploading image");
-
-        try {
-            googleCloudServicesClient.uploadImage(getToken(), fileName, file.getBytes());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // set all the images in the bucket to be public
-        //logger.info("Setting public access");
-        //googleCloudServicesClient.setPublicAccess(getToken(), "{\"bindings\":[{\"role\":\"roles/storage.objectViewer\",\"members\":[\"allUsers\"]}]}");
-
-        logger.info("Uploading image completed");
+        logger.info("Uploading image {} to the google cloud.",file.getName());
+        googleCloudServicesClient.uploadImage(getToken(), fileName, file.getBytes());
+        logger.info("Uploading image completed. The link is {}" + "https://storage.googleapis.com/collabothon-dvadnyvtahu/" + fileName);
 
         return "https://storage.googleapis.com/collabothon-dvadnyvtahu/" + fileName;
     }
